@@ -13,9 +13,8 @@ const currencySign = {
 
 chrome.runtime.sendMessage({ message: "content script loaded" }, (response) => {
   if (response.requested) {
-    console.log(response);
+    
     const { currency, exchangeRate, zoom, tabId } = response;
-    console.log(currency, exchangeRate, zoom);
     updateContent(currency, exchangeRate);
   }
 });
@@ -24,6 +23,7 @@ function updateContent(currency, exchangeRate) {
   updateDollars(currency, exchangeRate);
   updateDetails(currency, exchangeRate);
   insertPricingStatement();
+  removeCadStatement();
   callForReset();
 }
 
@@ -83,4 +83,9 @@ function insertPricingStatement() {
 
 function callForReset() {
   chrome.runtime.sendMessage({ reset: true });
+}
+
+function removeCadStatement() {
+  document.querySelector(".row .col-sm-12 p").innerHTML = "*We consider a full time practitioner to be 24 or more hours / week.";
+  
 }
