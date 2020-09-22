@@ -18,7 +18,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       //could just call getExchangerate and have it reyturn the rate here
       sendResponse({ exchangeRate });
     });
-    createTab(request.zoom);
+    createTab();
   }
   if (request.message === "content script loaded") {
     console.log(request.message);
@@ -65,41 +65,8 @@ function getExchangeRate(currency, callback) {
   });
 }
 
-function createTab(zoom) {
+function createTab(m) {
   chrome.tabs.create({ url: "http://janeapp.com/pricing" }, (tab) => {
     console.log(tab.id);
-    //chrome.tabs.onRemoved.addListener(resetZoom);
-    
-    setZoomMode(tab.id, "automatic", () => {
-      if (zoom) {
-        setZoom(tab.id, 0.75);
-      }
-    });
-    //setZoomMode(tab.id, "automatic");
-  });
-}
-
-function setZoomMode(tab, mode, callback) {
-  chrome.tabs.setZoomSettings(tab, { mode: mode, scope: "per-tab" }, () => {
-    if (callback) {
-      callback();
-    }
-  });
-}
-function setZoom(tab, zoom, callback) {
-  chrome.tabs.setZoom(tab.id, zoom, () => {
-    console.log("CHanged zoom");
-    if (callback) {
-      callback();
-    }
-  });
-}
-
-function resetZoom(tabId, removeInfo) {
-  console.log("from remove listener" + tabId);
-  console.log(removeInfo);
-  console.log("tab closing");
-  setZoom(tabId, 1, () => {
-    setZoomMode(tabId, "automatic", () => {});
   });
 }
