@@ -1,0 +1,36 @@
+{
+  "name": "Jane local pricing",
+  "version": "1.0",
+  "description": "Adjusts janeapp.com/pricing to any curency based on live exchange rate",
+
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "storage",
+    "tabs",
+    "https://api.exchangeratesapi.io/latest"
+  ],
+
+  "browser_action": {
+    "default_popup": "index.html",
+    "16": "images/icon_16.png",
+    "32": "images/icon_32.png",
+    "48": "images/icon_48.png",
+    "128": "images/icon_128.png"
+  },
+  "icons": {
+    "16": "images/icon_16.png",
+    "32": "images/icon_32.png",
+    "48": "images/icon_48.png",
+    "128": "images/icon_128.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts" : [{
+    "matches" : ["https://jane.app/pricing"],
+    "js" : ["content.js"]
+  }],
+  "manifest_version": 2
+}

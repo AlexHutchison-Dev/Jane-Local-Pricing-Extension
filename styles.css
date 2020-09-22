@@ -1,0 +1,70 @@
+@font-face {
+    font-family: "proxima_novathin";
+    src: url("/fonts/proxima_thin/proxima_nova_thin-webfont.woff2")
+        format("woff2"),
+      url("/fonts/proxima_thin/proxima_nova_thin-webfont.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  body {
+    text-align: center;
+    font-family: "proxima_novathin";
+    font-weight: 300;
+
+    color: #009fa6;
+  }
+
+  h1 {
+    font-family: "Proxima_novathin", arial, sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    color: #555555;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h3{
+    font-size:16px;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+  }
+  p {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  button{
+    padding: 5px;
+    margin-bottom: 10px;
+
+  }
+  select{
+      padding: 4px;
+  }
+  span {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .input {
+    
+    background-color: #009fa6;
+    border-style: none;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 1px, 1px, 2px, 0px;
+    
+  }
+  .form {
+    background-color: #00c1ca;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  .popup {
+    height: 300px;
+    width: 250px;
+  }
+  .slider.round {
+    border-radius: 34px;
+  }
