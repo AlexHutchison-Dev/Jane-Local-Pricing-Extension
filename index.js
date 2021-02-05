@@ -1,10 +1,20 @@
 //jshint esversion:6
 
-const buttons = document.getElementById("button-group");
+document.getElementById("button-group").addEventListener("click", (event) => {
+  if(event.target.value) {
+   sendMessage(event.target.value);
+  }
+});
+document.getElementById("others").addEventListener("change", (event) => {
+  if(event.target.value) {
+    sendMessage(event.target.value);
+   }
+});
 
-buttons.addEventListener("click", (event) => {
+function sendMessage(currency) {
   chrome.runtime.sendMessage({
     message: "currency",
-    currency: event.target.value,
+    currency
   });
-});
+}
+

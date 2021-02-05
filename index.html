@@ -11,17 +11,26 @@
           Converts Jane's CAD prices to currency of your choice and updates
           pricing site for you to screenshot
         </p>
-        <h2>Choose Currency</h2>
+        <h2 class="currency">Choose Currency</h2>
         <div id="button-group">
-          <button class="input" value="GBP" id="GBP">GBP</button>
-          <button class="input" value="USD">USD</button>
-          <button class="input" value="EUR">EUR</button>
-          <select name="others" id="others" class="input">
+          <button class="input button" value="GBP" id="GBP">GBP</button>
+          <button class="input button" value="USD">USD</button>
+          <button class="input button" value="EUR">EUR</button>
+        </div>
+        
+        <div>
+          <label for="others">Other Currencies</label>
+          <br>
+          <select id="others" name="others" class="input select">
+            <option disabled selected value="">Select Currency</option>
             <option value="AUD">AUD</option>
             <option value="NZD">NZD</option>
             <option value="BRL">BRL</option>
+            
           </select>
         </div>
+          
+        
       </div>
     </div>
     <script src="index.js"></script>

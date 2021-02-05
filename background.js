@@ -1,5 +1,5 @@
 //jshint esversion:6
-/********  ON REMOVED NOT WORKING YET ********/
+
 var exchangeRate = null;
 var currency = null;
 
@@ -12,20 +12,16 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
   if (request.message === "currency") {
     currency = request.currency;
-
-    exchangeRate = getExchangeRate(currency, (rate) => {
+    checkStoredDataAge();
+    getExchangeRate(currency, (rate) => {
       exchangeRate = rate;
-      //could just call getExchangerate and have it reyturn the rate here
       sendResponse({ exchangeRate });
     });
     createTab();
   }
   if (request.message === "content script loaded") {
-    console.log(request.message);
-    console.log(exchangeRate);
+    
     if (exchangeRate) {
-      console.log(`sending exchangeRate : ${exchangeRate}`);
-
       sendResponse({
         currency,
         exchangeRate,
@@ -38,14 +34,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 function checkStoredDataAge() {
   chrome.storage.local.get(["date"], (storedDate) => {
     const oneDay = 60 * 60 * 1000;
-    if (storedDate && Date.now() - storedDate.date > oneDay) {
+    if (!storedDate.date || Date.now() - storedDate.date > oneDay) {
       fetchApiData();
     }
   });
 }
 
 function fetchApiData() {
-  const { base, date, rates } = fetch(
+  fetch(
     "https://api.exchangeratesapi.io/latest?base=CAD"
   )
     .then((responce) => responce.json())
@@ -60,13 +56,10 @@ function fetchApiData() {
 function getExchangeRate(currency, callback) {
   chrome.storage.local.get(["rates"], (data) => {
     const rates = data.rates;
-    exchangerate = rates[currency];
-    callback(exchangerate);
+    callback(rates[currency]);
   });
 }
 
-function createTab(m) {
-  chrome.tabs.create({ url: "http://janeapp.com/pricing" }, (tab) => {
-    console.log(tab.id);
-  });
+function createTab() {
+  chrome.tabs.create({ url: "http://janeapp.com/pricing" });
 }

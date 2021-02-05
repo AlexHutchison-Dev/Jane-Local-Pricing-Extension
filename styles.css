@@ -12,14 +12,15 @@
     font-family: "proxima_novathin";
     font-weight: 300;
 
-    color: #009fa6;
+    color: #eeeeee;
+
   }
 
   h1 {
     font-family: "Proxima_novathin", arial, sans-serif;
     font-weight: 700;
     font-size: 25px;
-    color: #555555;
+    color: #868585;
   }
   h2 {
     font-size: 18px;
@@ -31,8 +32,8 @@
     padding-bottom: 5px;
   }
   p {
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 800;
   }
   button{
     padding: 5px;
@@ -46,14 +47,33 @@
     font-size: 14px;
     font-weight: bold;
   }
+  label {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .currency { 
+    margin-top: 10px;
+  }
   .input {
     
     background-color: #009fa6;
-    border-style: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: whitesmoke;
     border-radius: 5px;
     color: white;
     box-shadow: 1px, 1px, 2px, 0px;
     
+  }
+  .input:hover {
+    background-color: whitesmoke;
+    color: #00c1ca;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #009fad;
+    box-shadow: 1px, 1px, 2px, 0px;
+
+
   }
   .form {
     background-color: #00c1ca;

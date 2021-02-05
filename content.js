@@ -14,7 +14,7 @@ const currencySign = {
 chrome.runtime.sendMessage({ message: "content script loaded" }, (response) => {
   if (response.requested) {
     
-    const { currency, exchangeRate, zoom, tabId } = response;
+    const { currency, exchangeRate} = response;
     updateContent(currency, exchangeRate);
   }
 });
@@ -54,10 +54,8 @@ function updateDetails(currency, exchangeRate) {
   );
   details.map((element) => {
     const numbers = element.innerHTML.match(/\d+/g).map(Number);
-    const priceInDollars = numbers[1];
-    console.log(priceInDollars);
     element.innerHTML = generateDetailsHtml(
-      priceInDollars,
+      numbers[1],
       currency,
       exchangeRate
     );
@@ -77,7 +75,6 @@ function insertPricingStatement() {
   const header = document.querySelectorAll(
     "header .container .row .col-sm-12 hgroup h3"
   );
-  console.log(header);
   header[0].innerHTML = `${PRICING_STATEMENT}`;
 }
 
